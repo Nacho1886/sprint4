@@ -20,14 +20,6 @@ function moviesAverageOfDirector(array, director) {
   console.log("EXERCICE 3 -->", averageMovies)
   return averageMovies
 }
-// function moviesAverageOfDirector(array, director) {
-//   let sumScore = 0
-//   const moviesDirector = getMoviesFromDirector(array, director)
-//   moviesDirector.map((movie) => sumScore += movie.score)
-//   const averageMovies = Number((sumScore / moviesDirector.length).toFixed(2))
-//   console.log("EXERCICE 3 -->", averageMovies);
-//   return averageMovies
-// }
 
 // Exercise 4:  Alphabetic order by title 
 function orderAlphabetically(array) {
@@ -43,28 +35,23 @@ function orderByYear(array) {
   const listMoviesOrdered = []
   const iterableArray = [...array]
   for (const year of orderYears) {
-    const indexMovie = iterableArray.findIndex(movie => movie.year === year)
-    listMoviesOrdered.push(iterableArray.splice(indexMovie, 1))
+    let arrayYear = []
+    while (iterableArray.findIndex(movie => movie.year === year) !== -1) {
+      indexMovie = iterableArray.findIndex(movie => movie.year === year)
+      arrayYear.push(iterableArray[indexMovie])
+      iterableArray.splice(indexMovie, 1)
+    }
+    const ordenedNamesYear = orderAlphabetically(arrayYear)
+    
+    while (ordenedNamesYear.length !== 0) {
+      const ordenedMoviesYear = arrayYear.find(movie => movie.title === ordenedNamesYear[0])
+      listMoviesOrdered.push(ordenedMoviesYear)
+      ordenedNamesYear.shift()
+    }
   }
-
-console.log("EXERCICE 5 orderYears -->", listMoviesOrdered)
+  console.log("EXERCICE 5-->", listMoviesOrdered)
+  return listMoviesOrdered
 }
-// function orderByYear(array) {
-//   const orderYears = array.reduce((firstMovie, movie, index) =>{
-//     if (firstMovie.year > movie.year) {
-//       movie[index] 
-
-//       console.log("EXERCICE 5 orderYears -->", orderYears)
-//       console.log("EXERCICE 5 orderYears[index] -->", orderYears[index])
-//       console.log("EXERCICE 5 firstMovie -->", firstMovie)
-//       console.log("EXERCICE 5 movie -->", movie)
-
-//     }
-//     if (firstMovie.year > movie.year) {
-
-//     }
-//   })
-// }
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory() {

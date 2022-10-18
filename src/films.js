@@ -39,7 +39,7 @@ function orderByYear(array) {
   const orderYears = array.map(movies => (movies.year)).sort()
   const listMoviesOrdered = []
   const iterableArray = [...array]
-  for (const year of orderYears) {
+  orderYears.map((year) => {
     let arrayYear = []
     while (iterableArray.findIndex(movie => movie.year === year) !== -1) {
       indexMovie = iterableArray.findIndex(movie => movie.year === year)
@@ -53,7 +53,7 @@ function orderByYear(array) {
       listMoviesOrdered.push(ordenedMoviesYear)
       ordenedNamesYear.shift()
     }
-  }
+  })
   /* console.log("EXERCICE 5-->", listMoviesOrdered) */
   return listMoviesOrdered
 }
@@ -61,12 +61,12 @@ function orderByYear(array) {
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory(array, genre) {
   const arrayGenre = array.filter((movie) => movie.genre.find(genreMovie => genreMovie === genre))
-  for (const movieGenre of arrayGenre) {
+  arrayGenre.map((movieGenre) =>{    
     if (!(movieGenre.score > 0)) {
-      const movieEliminated = arrayGenre.findIndex(movie => movie === movieGenre)
-      arrayGenre.splice(movieEliminated, 1)
-    }
-  }
+    const movieEliminated = arrayGenre.findIndex(movie => movie === movieGenre)
+    arrayGenre.splice(movieEliminated, 1)
+  }})
+
   const averageGenre = moviesAverage(arrayGenre)
   /* console.log("EXERCICE 6-->", averageGenre) */
   return averageGenre
@@ -76,13 +76,13 @@ function moviesAverageByCategory(array, genre) {
 function hoursToMinutes(array) {
   /* const removedText = self.val().replace(/\D+/g, ''); */
   const arrayWithMinuteMovies = []
-  for (const movie of array) {
+  array.map((movie) =>{
     const newMovie = {...movie}
     newMovie.duration = newMovie.duration.replace(new RegExp(/[a-z]/g),"").split(" ")
     newMovie.duration = newMovie.duration.length === 2 ?
     newMovie.duration[0] * 60 + Number(newMovie.duration[1]) : newMovie.duration[0] * 60
     arrayWithMinuteMovies.push(newMovie)
-  }
+  })
   /* console.log("EXERCICE 7-->", arrayWithMinuteMovies); */
   return arrayWithMinuteMovies
 }

@@ -40,7 +40,7 @@ function orderByYear(array) {
     if (movie1.year === movie2.year) movie1.title > movie2.title ? 1 : -1;
     return movie1.year > movie2.year ? 1 : -1;;
   })
-  console.log("EXERCICE 5-->", orderYears)
+  /* console.log("EXERCICE 5-->", orderYears) */
   return [...orderYears]
 }
 /* function orderByYear(array) {

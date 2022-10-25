@@ -15,16 +15,13 @@ function getMoviesFromDirector(array, director) {
 // Exercise 3: Calculate the average of the films of a given director.
 function moviesAverageOfDirector(array, director) {
   const moviesDirector = getMoviesFromDirector(array, director)
-  averageMovies = moviesAverage(moviesDirector)
+  const averageMovies = moviesAverage(moviesDirector)
   /* console.log("EXERCICE 3 -->", averageMovies) */
   return averageMovies
 }
 function moviesAverage(array) {
-  if (array.length > 1) {
-    let averageMovies = array.reduce((sumScore, movie) => sumScore.score ? sumScore.score + movie.score : sumScore + movie.score)
+    const averageMovies = array.reduce((sumScore, movie) => sumScore + movie.score, 0)
     return Number((averageMovies / array.length).toFixed(2))
-  }
-  if (array.length === 1) return Number((array[0].score / array.length).toFixed(2))
 }
 
 // Exercise 4:  Alphabetic order by title 
@@ -38,7 +35,7 @@ function orderAlphabetically(array) {
 function orderByYear(array) {
   const orderYears = array.sort((movie1, movie2) => {
     if (movie1.year === movie2.year) movie1.title > movie2.title ? 1 : -1;
-    return movie1.year > movie2.year ? 1 : -1;;
+    return movie1.year > movie2.year ? 1 : -1;
   })
   /* console.log("EXERCICE 5-->", orderYears) */
   return [...orderYears]
@@ -70,7 +67,7 @@ function orderByYear(array) {
 function moviesAverageByCategory(array, genre) {
   const arrayGenre = array.filter((movie) => movie.genre.find(genreMovie => genreMovie === genre))
   arrayGenre.map((movieGenre) =>{    
-    if (!(movieGenre.score > 0)) {
+    if (!movieGenre.score) {
     const movieEliminated = arrayGenre.findIndex(movie => movie === movieGenre)
     arrayGenre.splice(movieEliminated, 1)
   }})
